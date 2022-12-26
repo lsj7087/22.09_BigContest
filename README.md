@@ -33,14 +33,14 @@
 ***
 
 ### ***Data***
-    - 2022년 3월 ~ 6월 Data
+ -2022년 3월 ~ 6월 Data
     
 - user_spec.csv (user 신용정보)
     - 신청서 번호, 유저 번호, 신청 정보, 유저 정보 등 17개의 Column
     - 분석에 활용할 데이터
     
 - loan_result.csv (사용자가 신청한 대출별 금융사별 승인결과)
-    - 신청서 번호, 금융사 번호, 상품 번호, 한도, 금리, 신청 여부**(target)** 등 7개의 Column
+    - 신청서 번호, 금융사 번호, 상품 번호, 한도, 금리, 신청 여부 **(target)** 등 7개의 Column
     - 예측해야하는 target 변수를 포함한 데이터
     
 - log_data.csv (finda App 로그 정보 )
@@ -51,78 +51,40 @@ https://www.bigcontest.or.kr/points/content.php#ct04
 
 ***
 
-### ***데이터 전처리***
+### ***전처리***
 
-- 시계열 Data의 특성을 없애는 방향으로 전처리 진행
-    - 월별, 계절별, 년도별, 요일별, 상하반기별 평균 오염도 Columns 생성
+- 결측인 데이터들은 각각의 성격에 맞게 범주화, 삭제, 예측을 적용함
+    1. 나이, 성별 결측은 예측할 수 없고, 삭제하기엔 데이터의 손실이 많아 **범주화** 
 
-***
+    2. 유저 정보에 결측이 있었지만, 해당 유저는 대출을 할 수 없는 청소년 혹은 본 분석 목적에 해당하지 않는 유저이기에 **삭제** 
 
-### ***사용한 분석 기법***
-
-- Linkage Method
-    - 본 프로젝트에서는 Ward link를 사용하였습니다.
-
-![ward](https://user-images.githubusercontent.com/90700892/209454925-d54e7c43-b2db-4af8-bbe6-9bd1afdb4391.JPG)
-
-- K-Means Clustering
-    - 이 분석기법을 활용하여 총 몇개의 군집으로 나눌지 결정하였습니다.
-    - Using Elbow Method (6개로 선정)
-
-![kmeans](https://user-images.githubusercontent.com/90700892/209454928-595b3d2c-6e41-4463-bd28-ccb262bd2434.JPG)
-
-- PCA
-    - biplot을 그려 각 cluster들이 columns에 의해 잘 분류 되었는지 대략적으로 확인 할 수 있었습니다.
-
-![biplot](https://user-images.githubusercontent.com/90700892/209454929-fbad5c88-a64a-4b06-98df-6a42157267ad.JPG)
-
-- Exploratory Factor Analysis
-    - Data에서 각 cluster 별로 모든 column을 비교하기 보다는 비슷한 Factor끼리 묶어 비교할 수 있었습니다.
-    - 결과 6개의 대기오염 종류를 3개의 Factor로 묶을 수 있었습니다.
-
-![factor](https://user-images.githubusercontent.com/90700892/209454930-0c2b744b-a54a-407e-bf64-a2828f63b557.JPG)
-
-- Factor_1
-    - 미세먼지농도, 초미세먼지농도에 대한 factor loading 값이 큼
-    - "미세먼지오염"이라고 명명
-    
-- Factor_2
-    - 이산화질소농도, 일산화탄소농도, 아황산가스농도에 대한 factor loading 값이 큼
-    - 자동차의 배기가스에서는 질산화물질(NOx), 일산화탄소(CO), 탄화수소(HC), 총먼지(TSP : Total Solid Particlate), 아황산가스(SO2) 등 대기를 오염시키는 주요 물질 배출
-    - 따라서 "자동차환경오염"이라고 명명 
-    
-- Factor_3
-    - 오존농도에 대한 factor loading 값이 큼
-    - "오존오염"이라고 명명     
+    3. 신용 점수라는 변수는 연속형 변수라는 특징 and 대출 정보와 관련 높은 변수라고 판단 => 따라서 MissForest 모델을 사용한 **대체**
 
 ***
 
-### ***Pipeline***
+### ***모델링***
 
-- Read Data
-    - Data를 읽고 특성 및 shape을 확인합니다.  
-  
-- Data Cleansing & Feature Engineering
-    - Data 정제 및 필요한 Feature을 만드는 작업을 수행합니다.  
-    
-- Analysis
-    - 정제된 Data를 가지고 군집분석, PCA, 요인분석을 진행합니다.  
-    
-- Final Analysis and Troubleshooting
-    - 최종 clustering 및 각 cluster의 특성에 대해 파악합니다.
-    - 통합대기환경지수를 활용해 각 cluster별로 점수를 매겨 각 cluster의 특성을 파악하는 지표로 사용하였습니다.
-    
-- Visualisation with folium
-    - folium 모듈을 사용해 실제 측정소의 위치 및 주변 도로에 대한 map을 시각화합니다.
+- 두 단계로 나눈 모델링
+
+
+- Recall을 중요하게 판단
+
+
+- threshold 변경
+
 
 ***
 
-### ***최종 Clustering***
+### ***군집화***
 
-![클러스터지도](https://user-images.githubusercontent.com/90700892/209454935-3b691774-3379-4ca1-b1f2-d07902213ec1.jpg)
 
-서울시 대기오염의 특성에 맞춰 총 6개의 cluster로 분류할 수 있었습니다.
 
 ***
 
-### ***folium mapping***
+### ***결론***
+
+
+
+***
+
+### ***thanks***
