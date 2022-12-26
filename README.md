@@ -49,7 +49,7 @@
 
 https://www.bigcontest.or.kr/points/content.php#ct04
 
-<img src="https://user-images.githubusercontent.com/90736934/209517786-33c07349-494b-474f-88a4-8a54759917a0.png  width="200" height="400"/>
+<img src="https://user-images.githubusercontent.com/90736934/209517786-33c07349-494b-474f-88a4-8a54759917a0.png"  width="200" height="400"/>
 
 
 ***
