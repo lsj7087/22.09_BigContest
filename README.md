@@ -68,14 +68,16 @@ https://www.bigcontest.or.kr/points/content.php#ct04
 
 ### ***모델링***
 
-- 두 단계로 나눈 모델링
+- 두 단계로 나눈 모델링 
+    - ![빅콘_모델구조_크기조정](https://user-images.githubusercontent.com/90736934/209518599-7b2d945f-8f89-4280-949a-77901a465170.png)
 
 
 - Recall을 중요하게 판단
-
+     - 1차 모델링에서 FALSE로 판단한 신청서는 최종 의사결정에서 제외되므로, TRUE를 선정하는 기준을 더 유하게 적용할 필요가 있음.
+     - => f1-score가 아닌 f1.5-score를 기준으로 모델의 threshold를 조정
 
 - threshold 변경
-
+    - 2차 모델링에서 3가지 모델을 앙상블하는 방법에 threshold를 조정하는 방법을 고안함
 
 ***
 
