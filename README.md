@@ -49,7 +49,8 @@
 
 https://www.bigcontest.or.kr/points/content.php#ct04
 
-<img src="https://user-images.githubusercontent.com/90736934/209517786-33c07349-494b-474f-88a4-8a54759917a0.png"  width="200" height="400"/>
+![빅콘_데이터구조_크기조정](https://user-images.githubusercontent.com/90736934/209518174-63e72a3e-6779-4419-9370-2db226977caf.png)
+
 
 
 ***
